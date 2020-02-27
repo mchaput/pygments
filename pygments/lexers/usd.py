@@ -70,6 +70,7 @@ class UsdLexer(RegexLexer):
         _keywords(TYPES, Keyword.Type) +
         [
             (r"[\(\)\[\]{}]", Punctuation),
+            (r"\A#usda .+$", Comment.Hashbang),
             ("#.*?$", Comment.Single),
             (",", Punctuation),
             (";", Punctuation),  # ";"s are allowed to combine separate metadata lines
@@ -82,7 +83,6 @@ class UsdLexer(RegexLexer):
             (r"<(\.\./)*([\w/]+|[\w/]+\.\w+[\w:]*)>", Name.Namespace),
             (r"@.*?@", String.Interpol),
             (r'\(.*"[.\\n]*".*\)', String.Doc),
-            (r"\A#usda .+$", Comment.Hashbang),
             (r"\s+", Whitespace),
             (r"[\w_]+", Text),
             (r"[_:\.]+", Punctuation),
